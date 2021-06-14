@@ -20,4 +20,6 @@ public class BookDetail {
 
     @NotBlank(message = "Book isbn should not be null or empty")
     private String isbn;
+
+    private String description;
 }
