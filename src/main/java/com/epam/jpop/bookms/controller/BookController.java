@@ -12,34 +12,34 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/books")
 @RequiredArgsConstructor
 public class BookController {
 
     private final BookService bookService;
 
-    @GetMapping("/books")
+    @GetMapping
     public List<BookDetail> getAll() {
         return bookService.getAllBooks();
     }
 
-    @GetMapping("/books/{id}")
+    @GetMapping("/{id}")
     public BookDetail getById(@PathVariable Long id) {
         return bookService.getBookById(id);
     }
 
-    @PostMapping("/books")
-    public ResponseEntity add(@Valid @RequestBody BookDetail bookDetail) {
+    @PostMapping
+    public ResponseEntity<Void> add(@Valid @RequestBody BookDetail bookDetail) {
         BookDetail savedBook = bookService.saveBook(bookDetail);
         return ResponseEntity.created(URI.create("/api/v1/books/" + savedBook.getId())).build();
     }
 
-    @PutMapping("/books/{id}")
+    @PutMapping("/{id}")
     public BookDetail update(@Valid @RequestBody BookDetail bookDetail, @PathVariable  Long id) {
         return bookService.updateBook(bookDetail,id);
     }
 
-    @DeleteMapping("/books/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable  Long id) {
         bookService.deleteBook(id);

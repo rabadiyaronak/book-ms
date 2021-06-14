@@ -50,7 +50,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDetail updateBook(BookDetail bookDetail, Long id) {
-       if(!checkIfBookExists(id)){
+       if(!exists(id)){
            throw new BookNotFoundException("book not found with id - " + id);
        }
         bookDetail.setId(id);
@@ -62,12 +62,12 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteBook(Long id) {
-        if(checkIfBookExists(id)){
+        if(exists(id)){
             bookRepository.deleteById(id);
         }
     }
 
-    private boolean checkIfBookExists(Long id) {
+    private boolean exists(Long id) {
        return bookRepository.existsById(id);
     }
 
