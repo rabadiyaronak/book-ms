@@ -1,0 +1,1 @@
+spring:  application:    name: book-ms  jpa:    hibernate:      ddl-auto: update  h2:    console:      enabled: trueserver:  port: 8081spring-doc:  api-docs:    path: /book-ms/api-docs  swagger-ui:    path: /book-ms/swagger.html
